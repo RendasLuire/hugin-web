@@ -1,26 +1,107 @@
 @import "tailwindcss";
 
+/* === Tema base oscuro (predeterminado) === */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-sans: 'Unbounded', 'IBM Plex Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-background: #0b0e11;       /* Odin Black */
+  --color-foreground: #e3e7eb;       /* Mist Grey */
+
+  --color-primary: #1e3a8a;          /* Raven Blue */
+  --color-primary-soft: #3b82f6;     /* Fjord Sky */
+  --color-accent: #0d4b56;           /* Deep Fjord Glare */
+  --color-secondary: #64748b;        /* Iron Fog */
+  --color-error: #b91c1c;            /* Blood Rust */
+  --color-muted: #9ca3af;            /* Tailwind muted gray */
+  --color-runic: #c084fc;            /* Arcane Purple */
+  --color-gold: #d97706;             /* Burnished Gold */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-background: #f8fafc;
+    --color-foreground: #0b0e11;
+    --color-primary: #3b82f6;
+    --color-secondary: #94a3b8;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  background-image: radial-gradient(circle at top left, rgba(255,255,255,0.03), transparent 70%);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Button */
+.btn {
+  background: linear-gradient(to right, #4338ca, #4f46e5);
+  color: var(--color-foreground);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 2px solid transparent;
+  font-family: var(--font-mono);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background: linear-gradient(to right, #7c3aed, #8b5cf6);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+  transform: scale(1.03);
+}
+
+/* Input */
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--color-gold);
+  transition: all 0.3s ease;
+}
+
+.input::placeholder {
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.input:focus {
+  border-color: var(--color-runic);
+  outline: none;
+}
+
+/* Card */
+.card {
+  background: linear-gradient(145deg, rgba(30, 58, 138, 0.85), rgba(15, 23, 42, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(6px);
+  padding: 2rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.08);
+  font-family: var(--font-sans);
+}
+
+.card:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+
+
+/* Rune Decorative Text */
+.decorative-rune {
+  font-family: 'Uncial Antiqua', serif;
+  font-size: 2rem;
+  color: var(--color-runic);
+  text-shadow: 0 0 8px rgba(192, 132, 252, 0.5);
 }
