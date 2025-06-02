@@ -13,9 +13,9 @@ export async function loginUser(formData: FormData) {
   });
 
   if (!res.ok) {
-    const { message } = await res.json();
-    console.log('Error:', message);
-    throw new Error(message || 'Acceso denegado por los dioses');
+    const data = await res.json();
+    console.log('Error:', data);
+    throw new Error(data.message || 'Acceso denegado por los dioses');
   }
 
   const data = await res.json();
