@@ -13,7 +13,12 @@ export default function LoginForm() {
         await loginUser(formData);
         window.location.href = '/dashboard';
       } catch (err: any) {
-        setError(err.message || 'Error al iniciar sesión');
+        console.error('ERROR:', err);
+        const message =
+          typeof err?.message === 'string'
+            ? err.message
+            : 'Error desconocido al iniciar sesión';
+        setError(message);
       }
     });
   };
@@ -52,7 +57,7 @@ export default function LoginForm() {
           required
         />
 
-        <button type="submit" className="btn w-full">
+        <button type="submit" className="btn w-full" disabled={isPending}>
           <span className="decorative-rune mr-2">ᚾ</span>
           Clamar al cuervo
         </button>

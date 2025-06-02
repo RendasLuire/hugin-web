@@ -12,18 +12,23 @@ export async function loginUser(formData: FormData) {
     headers: { 'Content-Type': 'application/json' },
   });
 
-  const responseBody = await res.json();
+  let responseBody;
+
+  try {
+    responseBody = await res.json();
+  } catch {
+    throw new Error('Respuesta inválida del servidor');
+  }
 
   if (!res.ok) {
     const message = responseBody?.message || 'Acceso denegado por los dioses';
-    throw new Error(message);
   }
 
   const cookieStore = await cookies();
-cookieStore.set('token', responseBody.accessToken, {
-  httpOnly: true,
-  path: '/',
-});
+  cookieStore.set('token', responseBody.accessToken, {
+    httpOnly: true,
+    path: '/',
+  });
 
   return true;
 }
