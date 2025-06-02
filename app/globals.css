@@ -99,9 +99,56 @@ body {
 
 
 /* Rune Decorative Text */
+@keyframes spinCircle {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+
+.spin-container {
+  animation: spinCircle 20s linear infinite;
+}
+
+/* Runa central con pulso */
+@keyframes pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.85;
+  }
+}
+
 .decorative-rune {
   font-family: 'Uncial Antiqua', serif;
   font-size: 2rem;
   color: var(--color-runic);
   text-shadow: 0 0 8px rgba(192, 132, 252, 0.5);
 }
+
+.rune-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    color: #aaa;
+    text-shadow: none;
+  }
+  50% {
+    color: var(--color-runic);
+    text-shadow:
+      0 0 6px var(--color-runic),
+      0 0 12px var(--color-runic),
+      0 0 20px rgba(192, 132, 252, 0.4);
+  }
+}
+
+.rune-glow {
+  animation-name: glow;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+

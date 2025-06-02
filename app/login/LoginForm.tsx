@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from 'react';
 import { loginUser } from './actions';
+import RuneSpinner from '../components/RuneSpinner';
 
 export default function LoginForm() {
   const [error, setError] = useState('');
@@ -37,6 +38,12 @@ export default function LoginForm() {
           </p>
         )}
 
+        {isPending ? (
+          <div className="flex justify-center">
+            <RuneSpinner className="w-8 h-8" />
+          </div>
+        ) : (
+          <>
         <input
           type="email"
           name="email"
@@ -52,12 +59,14 @@ export default function LoginForm() {
           placeholder="Secreto que protege las puertas"
           required
         />
-
         <button type="submit" className="btn w-full" disabled={isPending}>
-          <span className="decorative-rune mr-2">ᚾ</span>
-          Clamar al cuervo
+            <>
+              <span className="decorative-rune mr-2">ᚾ</span>
+              Clamar al cuervo
+            </>
         </button>
-
+      </>   
+        )}
         <p className="decorative-rune text-center mt-4">ᛞᚨᚱ ᛈᛚᛖᚷᚨᚱᛁᚨ</p>
       </form>
     </div>
