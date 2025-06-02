@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
 
 /* === Tema base oscuro (predeterminado) === */
 :root {
@@ -14,8 +15,11 @@
   --color-secondary: #64748b;        /* Iron Fog */
   --color-error: #b91c1c;            /* Blood Rust */
   --color-muted: #9ca3af;            /* Tailwind muted gray */
+  --color-muted-bg: #1f2937;
   --color-runic: #c084fc;            /* Arcane Purple */
   --color-gold: #d97706;             /* Burnished Gold */
+  --color-panel: #161b22;
+  --color-highlight: #5b21b6; /* púrpura runa */
 }
 
 @media (prefers-color-scheme: light) {
@@ -147,8 +151,39 @@ body {
 
 .rune-glow {
   animation-name: glow;
+  animation-duration: 3s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
 
+/* Fondo rúnico sutil */
+.rune-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(192, 132, 252, 0.06), transparent 70%);
+  animation: pulseRune 5s infinite;
+  z-index: 0;
+}
 
+@keyframes pulseRune {
+  0%, 100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.05);
+  }
+}
+
+/* Runas individuales */
+.rune {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 2.5rem;
+  transform-origin: center center;
+  text-shadow: 0 0 8px rgba(192, 132, 252, 0.7);
+  user-select: none;
+}

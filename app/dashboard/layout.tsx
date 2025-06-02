@@ -1,38 +1,23 @@
 'use client';
 
-import { logoutUser } from './actions';
-import { useTransition } from 'react';
+import Navbar from '../components/NavBar';
 
 export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [isPending, startTransition] = useTransition();
-
-  const handleLogout = () => {
-    startTransition(() => {
-      logoutUser();
-    });
-  };
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--color-background)] text-[var(--color-foreground)] font-sans transition-colors duration-300">
-      <header className="flex items-center justify-between px-6 py-2 bg-[var(--color-background)] shadow-md">
-        <h1 className="text-2xl font-bold tracking-wide text-[var(--color-highlight)]">
-          HUGIN Dashboard
-        </h1>
-        <button
-          onClick={handleLogout}
-          disabled={isPending}
-          className="text-sm text-red-500 hover:underline"
-        >
-          {isPending ? 'Saliendo...' : 'Salir'}
-        </button>
-      </header>
-
-      <main className="flex-1 p-6">{children}</main>
-
+      <div className='flex h-screen flex-col md:flex-row md:overflow-hidden'>
+        <div className='w-full flex-none md:w-64'>
+      <Navbar />
+        </div>
+        <div className='flex-grow p-6 md:overflow-y-auto md:p-12'>
+    {children}
+        </div>
+      </div> 
       <footer className="flex items-center justify-center px-6 py-2 bg-[var(--color-background)] text-sm text-[var(--color-muted)]">
         <p>&copy; {new Date().getFullYear()} Hugin Web. All rights reserved.</p>
       </footer>
