@@ -14,11 +14,7 @@ export default function LoginForm() {
         window.location.href = '/dashboard';
       } catch (err: any) {
         console.error('ERROR:', err);
-        const message =
-          typeof err?.message === 'string'
-            ? err.message
-            : 'Error desconocido al iniciar sesión';
-        setError(message);
+        setError(err.message || 'Error al iniciar sesión');
       }
     });
   };

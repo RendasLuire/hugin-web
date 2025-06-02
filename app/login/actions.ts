@@ -16,16 +16,23 @@ export async function loginUser(formData: FormData) {
 
   try {
     responseBody = await res.json();
-  } catch {
+  } catch (error) {
     throw new Error('Respuesta inválida del servidor');
   }
 
   if (!res.ok) {
     const message = responseBody?.message || 'Acceso denegado por los dioses';
+    throw new Error(message);
+  }
+
+  const token = responseBody?.data?.accessToken;
+
+  if (!token) {
+    throw new Error('Token no recibido. El oráculo guarda silencio.');
   }
 
   const cookieStore = await cookies();
-  cookieStore.set('token', responseBody.accessToken, {
+  cookieStore.set('token', token, {
     httpOnly: true,
     path: '/',
   });
