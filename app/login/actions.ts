@@ -20,7 +20,10 @@ export async function loginUser(formData: FormData) {
     throw new Error('Respuesta inválida del servidor');
   }
 
-  if (!res.ok) {
+  if (res.status === 500) {
+    const message = 'Acceso denegado por los dioses';
+    throw new Error(message);
+  } else if (!res.ok) {
     const message = responseBody?.message || 'Acceso denegado por los dioses';
     throw new Error(message);
   }
