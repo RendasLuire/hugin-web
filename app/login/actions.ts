@@ -6,7 +6,6 @@ export async function loginUser(formData: FormData) {
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
 
-  try {
     const res = await fetch(`https://hugin-api.vercel.app/auth/login/`, {
       method: 'POST',
       body: JSON.stringify({ email, password }),
@@ -33,11 +32,5 @@ export async function loginUser(formData: FormData) {
     });
   
     return true;
-  } catch (error) {
-    console.error('Error in loginUser:', error);
-    throw new Error('Error processing login');
-    
-  }
-
 
 }
