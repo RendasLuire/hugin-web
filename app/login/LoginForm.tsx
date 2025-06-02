@@ -9,6 +9,7 @@ export default function LoginForm() {
   const [isPending, startTransition] = useTransition();
 
   const handleSubmit = (formData: FormData) => {
+    setError('');
     startTransition(async () => {
       try {
         await loginUser(formData);
