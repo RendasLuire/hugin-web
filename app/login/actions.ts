@@ -13,9 +13,13 @@ export async function loginUser(formData: FormData) {
   });
 
   if (!res.ok) {
-    const data = await res.json();
-    console.log('Error:', data);
-    throw new Error(data.message || 'Acceso denegado por los dioses');
+    let message = 'Acceso denegado por los dioses';
+    try {
+      const data = await res.json();
+      message = data.message || message;
+    } catch (error) {
+      console.error('Error parsing response:', error);
+    throw new Error(message);
   }
 
   const data = await res.json();
