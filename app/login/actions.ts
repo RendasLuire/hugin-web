@@ -13,6 +13,7 @@ export async function loginUser(formData: FormData) {
   });
 
   let responseBody;
+  let message = 'Acceso denegado por los dioses';
 
   try {
     responseBody = await res.json();
@@ -21,10 +22,12 @@ export async function loginUser(formData: FormData) {
   }
 
   if (res.status === 500) {
-    const message = 'Acceso denegado por los dioses';
+    message = 'Acceso denegado por los dioses';
     throw new Error(message);
   } else if (!res.ok) {
-    const message = responseBody?.message || 'Acceso denegado por los dioses';
+    res.status == 500 ? 
+    message = 'Acceso denegado por los dioses' : 
+    message = responseBody?.message;
     throw new Error(message);
   }
 

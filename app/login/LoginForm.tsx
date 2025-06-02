@@ -14,8 +14,8 @@ export default function LoginForm() {
         await loginUser(formData);
         window.location.href = '/dashboard';
       } catch (err: any) {
-        console.error('ERROR:', err);
-        setError(err.message || 'Error al iniciar sesión');
+        console.error('Error al iniciar sesión:', err);
+        setError('Acceso denegado por los dioses');
       }
     });
   };
