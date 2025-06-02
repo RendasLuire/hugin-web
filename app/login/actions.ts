@@ -6,31 +6,24 @@ export async function loginUser(formData: FormData) {
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
 
-    const res = await fetch(`https://hugin-api.vercel.app/auth/login/`, {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-  
-    if (!res.ok) {
-      let message = 'Acceso denegado por los dioses';
-      try {
-        const data = await res.json();
-        message = data.message || message;
-      } catch (error) {
-        console.error('Error parsing response:', error);
-      throw new Error(message);
-    }
-  }
-  
-    const data = await res.json();
-  
-    const cookieStore = await cookies();
-    cookieStore.set('token', data.token, {
-      httpOnly: true,
-      path: '/',
-    });
-  
-    return true;
+  const res = await fetch(`https://hugin-api.vercel.app/auth/login/`, {
+    method: 'POST',
+    body: JSON.stringify({ email, password }),
+    headers: { 'Content-Type': 'application/json' },
+  });
 
+  const responseBody = await res.json();
+
+  if (!res.ok) {
+    const message = responseBody?.message || 'Acceso denegado por los dioses';
+    throw new Error(message);
+  }
+
+  const cookieStore = await cookies();
+cookieStore.set('token', responseBody.accessToken, {
+  httpOnly: true,
+  path: '/',
+});
+
+  return true;
 }
