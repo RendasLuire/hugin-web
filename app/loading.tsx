@@ -1,7 +1,7 @@
 'use client';
 
-import { Loader2 } from 'lucide-react';
 import RuneCircleSpinner from './components/RuneCircleSpinner';
+import RuneSpinner from './components/RuneSpinner';
 
 export default function Loading() {
   return (
@@ -9,8 +9,7 @@ export default function Loading() {
       <div className="particles-bg absolute inset-0 pointer-events-none z-0" />
       <RuneCircleSpinner className="z-0 opacity-20 pointer-events-none" />
 
-      <Loader2 className="animate-spin mb-6 z-10 text-[var(--color-runic)] drop-shadow-[0_0_14px_var(--color-runic-wrath)]" size={48} />
-      
+      <RuneSpinner className="w-8 h-8" />
       <h2 className="text-3xl font-extrabold tracking-widest mb-4 z-10 text-[var(--color-foreground)] drop-shadow-[0_0_10px_var(--color-runic-wrath)]">
         ⧉ Invocando las runas...
       </h2>
