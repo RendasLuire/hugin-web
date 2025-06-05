@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'Runes';
+  src: url('/fonts/futhark.woff2') format('woff2');
+}
+
+.treasury-card {
+  backdrop-filter: blur(2px);
+  background-image: radial-gradient(circle at top left, rgba(255,255,255,0.02), transparent);
+  transition: transform 0.2s ease;
+}
+
+.treasury-card:hover {
+  transform: scale(1.01);
+}
+
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}

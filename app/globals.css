@@ -1,14 +1,17 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap');
 
-/* === Tema base oscuro (predeterminado) === */
+/* ===============================================================
+   Variables y estilos base para modo oscuro (predeterminado)
+================================================================ */
 :root {
+  /* Fuentes */
   --font-sans: 'Unbounded', 'IBM Plex Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
+  /* Paleta de Colores - Modo Oscuro */
   --color-background: #0b0e11;       /* Odin Black */
   --color-foreground: #e3e7eb;       /* Mist Grey */
-
   --color-primary: #1e3a8a;          /* Raven Blue */
   --color-primary-soft: #3b82f6;     /* Fjord Sky */
   --color-accent: #0d4b56;           /* Deep Fjord Glare */
@@ -19,41 +22,33 @@
   --color-runic: #c084fc;            /* Arcane Purple */
   --color-gold: #d97706;             /* Burnished Gold */
   --color-panel: #161b22;
-  --color-highlight: #5b21b6; /* púrpura runa */
+  --color-highlight: #5b21b6;        /* Púrpura runa */
   --color-runic-wrath: #dc2626;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --color-background: #f8fafc;
-    --color-foreground: #0b0e11;
-    --color-primary: #3b82f6;
-    --color-secondary: #94a3b8;
-  }
-}
-
+/* Estilos Globales - Modo Oscuro */
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
-  background-image: radial-gradient(circle at top left, rgba(255,255,255,0.03), transparent 70%);
+  background-image: radial-gradient(circle at top left, rgba(255, 255, 255, 0.03), transparent 70%);
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-/* Button */
+/* Botón (Dark) */
 .btn {
-  background: linear-gradient(to right, #4338ca, #4f46e5);
-  color: var(--color-foreground);
-  font-weight: 700;
-  letter-spacing: 0.05em;
   padding: 0.75rem 1rem;
   border-radius: 0.75rem;
   border: 2px solid transparent;
   font-family: var(--font-mono);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+  font-weight: 700;
+  letter-spacing: 0.05em;
   transition: all 0.3s ease;
   text-transform: uppercase;
+  background: linear-gradient(to right, #4338ca, #4f46e5);
+  color: var(--color-foreground);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
 }
 
 .btn:hover {
@@ -62,7 +57,7 @@ body {
   transform: scale(1.03);
 }
 
-/* Input */
+/* Input (Dark) */
 .input {
   width: 100%;
   padding: 0.75rem 1rem;
@@ -86,7 +81,7 @@ body {
   outline: none;
 }
 
-/* Card */
+/* Tarjeta (Card) - Dark */
 .card {
   background: linear-gradient(145deg, rgba(30, 58, 138, 0.85), rgba(15, 23, 42, 0.95));
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -101,19 +96,20 @@ body {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
+/* ============================================================== 
+   Animaciones y estilos decorativos de Runas y Efectos
+================================================================= */
 
-
-/* Rune Decorative Text */
+/* Animación para giro de contenedor */
 @keyframes spinCircle {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(-360deg); }
 }
-
 .spin-container {
   animation: spinCircle 20s linear infinite;
 }
 
-/* Runa central con pulso */
+/* Pulso de runa central */
 @keyframes pulse {
   0%, 100% {
     transform: translate(-50%, -50%) scale(1);
@@ -124,18 +120,17 @@ body {
     opacity: 0.85;
   }
 }
-
 .decorative-rune {
   font-family: 'Uncial Antiqua', serif;
   font-size: 2rem;
   color: var(--color-runic);
   text-shadow: 0 0 8px rgba(192, 132, 252, 0.5);
 }
-
 .rune-pulse {
   animation: pulse 2s ease-in-out infinite;
 }
 
+/* Efecto glow para runas */
 @keyframes glow {
   0%, 100% {
     color: #aaa;
@@ -149,15 +144,13 @@ body {
       0 0 20px rgba(192, 132, 252, 0.4);
   }
 }
-
 .rune-glow {
   animation-name: glow;
   animation-duration: 3s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
-
-/* Fondo rúnico sutil */
+/* Fondo sutil para efecto de runa */
 .rune-glow::before {
   content: '';
   position: absolute;
@@ -166,7 +159,6 @@ body {
   animation: pulseRune 5s infinite;
   z-index: 0;
 }
-
 @keyframes pulseRune {
   0%, 100% {
     opacity: 0.1;
@@ -188,7 +180,6 @@ body {
   text-shadow: 0 0 8px rgba(192, 132, 252, 0.7);
   user-select: none;
 }
-
 .rune-spell {
   color: var(--color-error);
   text-shadow: 0 0 8px rgba(252, 12, 12, 0.7);
@@ -196,46 +187,96 @@ body {
   position: absolute;
 }
 
+/* Animaciones de giro */
 @keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
-
 @keyframes spin-slower {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(-360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
 }
-
 @keyframes spin-fast {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(720deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(720deg); }
 }
-
 .animate-spin-slow {
   animation: spin-slow 20s linear infinite;
 }
-
 .animate-spin-slower {
   animation: spin-slower 30s linear infinite;
 }
-
 .animate-spin-fast {
   animation: spin-slow 10s linear infinite;
 }
-
 .reverse-spin {
   animation-direction: reverse;
 }
 
+/* ===============================================================
+   Ajustes Específicos: Modo Claro
+================================================================= */
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Paleta de Colores - Modo Claro */
+    --color-background: #f9fafb;      /* Casi blanco suave */
+    --color-foreground: #111827;      /* Azul muy oscuro, casi negro */
+    --color-primary: #6366f1;         /* Soft Indigo */
+    --color-primary-soft: #818cf8;    /* Pastel Indigo */
+    --color-secondary: #64748b;       /* Gris acero un poco más oscuro */
+    --color-accent: #0f766e;          /* Emerald Glare */
+    --color-error: #dc2626;           /* Sangre brillante */
+    --color-muted: #475569;           /* Gris medio para placeholders */
+    --color-muted-bg: #e2e8f0;        /* Gris muy claro */
+    --color-runic: #7c3aed;           /* Lavanda Rúnica */
+    --color-gold: #b45309;            /* Oro suave */
+    --color-panel: #e5e7eb;           /* Fondo de panel claro */
+    --color-highlight: #6d28d9;       /* Violeta místico */
+    --color-runic-wrath: #991b1b;     /* Rojo Rúnico Intenso */
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    background-image: radial-gradient(circle at top left, rgba(0,0,0,0.05), transparent 70%);
+  }
+
+  /* Estilo del Botón - Light */
+  .btn {
+    background: linear-gradient(to right, var(--color-primary), var(--color-highlight));
+    color: white;
+    box-shadow: none;
+  }
+  .btn:hover {
+    background: linear-gradient(to right, var(--color-runic), var(--color-highlight));
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.6);
+    transform: scale(1.03);
+  }
+
+  /* Estilo del Input - Light */
+  .input {
+    background-color: white;
+    border: 1.5px solid var(--color-muted);
+    color: var(--color-foreground);
+  }
+  .input::placeholder {
+    color: var(--color-muted);
+    opacity: 0.8;
+    font-weight: 600;
+  }
+  .input:focus {
+    border-color: var(--color-runic);
+    box-shadow: 0 0 6px var(--color-runic);
+    outline: none;
+  }
+
+  /* Estilo de la Tarjeta (Card) - Light */
+  .card {
+    background: linear-gradient(145deg, rgba(129, 140, 248, 0.15), rgba(255, 255, 255, 0.95));
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+  }
+  .card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  }
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import Navbar from '../components/NavBar';
+import Navbar from '.././components/NavBar';
 
 export default function DashboardLayout({
   children,
@@ -15,7 +15,7 @@ export default function DashboardLayout({
       <Navbar />
         </div>
         <div className='flex-grow p-6 md:overflow-y-auto md:p-12'>
-    {children}
+          {children}
         </div>
       </div> 
       <footer className="flex items-center justify-center px-6 py-2 bg-[var(--color-background)] text-sm text-[var(--color-muted)]">
